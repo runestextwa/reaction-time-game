@@ -1,15 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>Everyone loves reaction games, right? RIGHT????</h1>
+  <H2>..please just click a damn block when you see it.</H2>
+  <blockForClicking />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import blockForClicking from './components/blockForClicking.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    blockForClicking
   }
 }
 </script>
