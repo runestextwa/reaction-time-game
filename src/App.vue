@@ -2,7 +2,8 @@
   <h1>Everyone loves reaction games, right? RIGHT????</h1>
   <h2>..please just click a damn block when you see it.</h2>
   <button @click="gameOn">Start</button>
-  <blockForClicking v-if="gameStatus" />
+  <blockForClicking v-if="gameStatus" @click="gameOff" />
+  <p>{{ countingSeconds }} ms</p>
 </template>
 
 <script>
@@ -13,8 +14,9 @@ export default {
   data(){
     return{
       gameStatus:false,
-      staticDelay: 2000,
-      dynamicDelay: null
+      staticDelay: null,
+      countingEvent: null,
+      countingSeconds: 0
     }
   },
   components: {
@@ -22,8 +24,16 @@ export default {
   },
   methods:{
     gameOn(){
-      this.staticDelay += Math.random() * 1000; console.log (this.staticDelay);
-      this.dynamicDelay = setTimeout(() => {this.gameStatus = true}, this.staticDelay) 
+      this.staticDelay = 1000 + Math.random() * 2000; console.log (this.staticDelay);
+      this.countingSeconds = 0;
+      setTimeout(() => {
+        this.gameStatus = true
+        this.countingEvent = setInterval(() => {this.countingSeconds += 5}, 5)
+      }, this.staticDelay) 
+    },
+    gameOff(){
+      this.gameStatus = false;
+      clearInterval(this.countingEvent);
     }
   }
 }
