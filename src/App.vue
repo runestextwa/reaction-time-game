@@ -1,7 +1,7 @@
 <template>
   <h1>Everyone loves reaction games, right? RIGHT????</h1>
   <h2>..please just click a damn block when you see it.</h2>
-  <button @click="gameOn">Start</button>
+  <button class="btn" @click="gameOn">S T A R T</button>
   <blockForClicking v-if="gameStatus" @click="gameOff" />
   <p>{{ countingSeconds }} ms</p>
 </template>
@@ -48,4 +48,13 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.btn {
+  margin: 10px auto;
+  padding: 20px 40px;
+  background-color:greenyellow;
+}
+.btn:active {
+            transform: scale(0.8);
+            box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+        }
 </style>
