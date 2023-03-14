@@ -3,7 +3,11 @@
   <h2>..please just click a damn block when you see it.</h2>
   <button class="btn" @click="gameOn">S T A R T</button>
   <blockForClicking v-if="gameStatus" @click="gameOff" />
-  <p>{{ countingSeconds }} ms</p>
+  <div v-if="showResult">
+     <p style="font-weight:bold">{{ countingSeconds }} ms</p>
+     <p style="font-weight: bolder; font-size: larger; color:deeppink;">{{ result }}</p>
+    </div>
+ 
 </template>
 
 <script>
@@ -16,7 +20,9 @@ export default {
       gameStatus:false,
       staticDelay: null,
       countingEvent: null,
-      countingSeconds: 0
+      countingSeconds: 0,
+      showResult: false,
+      result: null
     }
   },
   components: {
@@ -25,6 +31,7 @@ export default {
   methods:{
     gameOn(){
       this.staticDelay = 1000 + Math.random() * 2000; 
+      this.showResult = false;
       this.countingSeconds = 0;
       setTimeout(() => {
         this.gameStatus = true
@@ -33,7 +40,11 @@ export default {
     },
     gameOff(){
       this.gameStatus = false;
-      clearInterval(this.countingEvent);
+          clearInterval(this.countingEvent);
+          if (this.countingSeconds < 210) this.result = 'An FPS player';
+      else if (this.countingSeconds < 320) this.result = "You're pretty good";
+      else this.result = 'Hello, grandma';
+      this.showResult = true;
     }
   }
 }
