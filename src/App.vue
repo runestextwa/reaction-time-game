@@ -24,7 +24,7 @@ export default {
   },
   methods:{
     gameOn(){
-      this.staticDelay = 1000 + Math.random() * 2000; console.log (this.staticDelay);
+      this.staticDelay = 1000 + Math.random() * 2000; 
       this.countingSeconds = 0;
       setTimeout(() => {
         this.gameStatus = true
